@@ -6,7 +6,7 @@ const translation = {
       },
     },
     app: {
-      name: 'Bedrock Claude Chat',
+      name: 'Clarion PharmaAI Playground',
       nameWithoutClaude: 'Bedrock Chat',
       inputMessage: 'Send a message',
       starredBots: 'Starred Bots',
@@ -50,7 +50,23 @@ const translation = {
         },
         internet_search: {
           name: 'Internet Search',
-          desciription: 'Search the internet for information.',
+          description: 'Search the internet for information.',
+        },
+        basic_info: {
+          name: 'Avis: Basic Info',
+          description: 'For the Avis chat bot.',
+        },
+        finalize_prices: {
+          name: 'Avis: Finalize Prices',
+          description: 'For the Avis chat bot.',
+        },
+        get_data: {
+          name: 'Avis: Get Data',
+          description: 'For the Avis chat bot.',
+        },
+        call_back: {
+          name: 'Avis: Call Back',
+          description: 'For the Avis chat bot.',
         },
       },
     },

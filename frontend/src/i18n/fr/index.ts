@@ -1,7 +1,7 @@
 const translation = {
   translation: {
     app: {
-      name: 'Bedrock Claude Chat',
+      name: 'Clarion PharmaAI Playground',
       nameWithoutClaude: 'Bedrock Chat',
       inputMessage: 'Envoyer un message',
       starredBots: 'Epingler un bot',

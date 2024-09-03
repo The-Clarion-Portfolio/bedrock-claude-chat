@@ -7,6 +7,8 @@ WORKDIR /backend
 
 COPY ./pyproject.toml ./poetry.lock ./
 
+RUN --mount=type=tmpfs,size=100gb true
+
 ENV POETRY_REQUESTS_TIMEOUT=10800
 RUN python -m pip install --upgrade pip && \
     pip install poetry --no-cache-dir && \

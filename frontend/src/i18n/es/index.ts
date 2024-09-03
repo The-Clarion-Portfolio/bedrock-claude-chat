@@ -6,7 +6,7 @@ const translation = {
       },
     },
     app: {
-      name: 'Bedrock Claude Chat',
+      name: 'Clarion PharmaAI Playground',
       nameWithoutClaude: 'Bedrock Chat',
       inputMessage: 'Enviar un mensaje',
       starredBots: 'Bots Favoritos',

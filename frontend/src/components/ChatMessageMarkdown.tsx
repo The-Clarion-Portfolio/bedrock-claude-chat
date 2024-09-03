@@ -129,7 +129,7 @@ const ChatMessageMarkdown: React.FC<Props> = ({
   const rehypePlugins = useMemo(() => {
     const rehypeExternalLinksOptions: Options = {
       target: '_blank',
-      properties: { style: 'word-break: break-all;' },
+      properties: { style: 'word-break: normal;' },
     };
     return [rehypeKatex, [rehypeExternalLinks, rehypeExternalLinksOptions]];
   }, []);

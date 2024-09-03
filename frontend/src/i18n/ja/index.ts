@@ -9,7 +9,7 @@ const translation = {
       },
     },
     app: {
-      name: 'Bedrock Claude Chat',
+      name: 'Clarion PharmaAI Playground',
       nameWithoutClaude: 'Bedrock Chat',
       inputMessage: '入力してください',
       starredBots: 'スター付きのボット',
@@ -53,7 +53,7 @@ const translation = {
         },
         internet_search: {
           name: 'インターネット検索',
-          desciription: 'インターネットで情報を検索します。',
+          description: 'インターネットで情報を検索します。',
         },
       },
     },

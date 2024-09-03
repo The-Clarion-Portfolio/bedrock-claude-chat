@@ -187,6 +187,66 @@ const BotEditPage: React.FC = () => {
     setUrls([...urls, '']);
   }, [urls]);
 
+  const onClickAddUrlArray = useCallback(() => {
+    const arrayStr = prompt("Paste the JSON array of urls!");
+
+    if (arrayStr === null || arrayStr === "") {
+      return;
+    }
+
+    try {
+      const newUrls = JSON.parse(arrayStr);
+      setUrls([...urls, ...newUrls]);
+    }
+    catch (e: unknown) {
+      if (e instanceof SyntaxError) {
+        alert("Array could not be parsed!");
+        return;
+      }
+
+      throw e;
+    }
+  }, [urls]);
+
+  const onClickAddUrlArrayFromFile = useCallback(() => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.id = 'jsonFile';
+    fileInput.accept = '.json';
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files) {
+        for (const file of fileInput.files) {
+          if (file) {
+            file.text().then(arrayStr => {
+              if (arrayStr === null || arrayStr === "") {
+                return;
+              }
+
+              try {
+                const newUrls = JSON.parse(arrayStr);
+                setUrls([...urls, ...newUrls]);
+              } catch (e: unknown) {
+                if (e instanceof SyntaxError) {
+                  alert("Array could not be parsed!");
+                  return;
+                }
+
+                throw e;
+              }
+            });
+          }
+        }
+      }
+    });
+
+    fileInput.click();
+  }, [urls]);
+
+  const onClickClearUrls = useCallback(() => {
+    setUrls(['']);
+  }, [urls]);
+
   const onClickRemoveUrl = useCallback(
     (idx: number) => {
       setUrls(
@@ -710,9 +770,17 @@ const BotEditPage: React.FC = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-2" style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}>
                     <Button outlined icon={<PiPlus />} onClick={onClickAddUrl}>
                       {t('button.add')}
+                    </Button>
+                    <Button outlined icon={<PiPlus />} onClick={onClickAddUrlArray}>
+                      Add Array
+                    </Button>
+                    <Button outlined icon={<PiPlus />} onClick={onClickAddUrlArrayFromFile}>
+                      Add Array From File
+                    </Button><Button outlined icon={<PiTrash />} onClick={onClickClearUrls}>
+                      Clear
                     </Button>
                   </div>
                 </div>
