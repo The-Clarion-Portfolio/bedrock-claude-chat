@@ -4,6 +4,7 @@ from app.agents.tools.internet_search import internet_search_tool
 from app.agents.tools.avis_bot.basic_info import basic_info_tool
 from app.agents.tools.avis_bot.finalize_prices import finalize_prices_tool
 from app.agents.tools.avis_bot.get_data import get_data_tool
+from app.agents.tools.avis_bot.call_back import call_back_tool
 
 
 def get_available_tools() -> list[BaseTool]:
@@ -12,6 +13,7 @@ def get_available_tools() -> list[BaseTool]:
         basic_info_tool,
         finalize_prices_tool,
         get_data_tool,
+        call_back_tool,
     ]
     return tools
 

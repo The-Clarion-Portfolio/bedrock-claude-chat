@@ -28,7 +28,7 @@ def call_back(session_id: str,
     return response.text
 
 
-get_data_tool = StructuredTool.from_function(
+call_back_tool = StructuredTool.from_function(
     func=call_back,
     name="call_back",
     description="Request a call back on behalf of the user",
