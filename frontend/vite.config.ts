@@ -13,6 +13,9 @@ export default defineConfig({
         enabled: true,
       },
       injectRegister: 'auto',
+      workbox: {
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+      },
       manifest: {
         name: 'Clarion PharmaAI Playground',
         short_name: 'Bedrock Chat',

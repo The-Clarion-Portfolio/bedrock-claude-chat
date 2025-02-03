@@ -1,5 +1,6 @@
 from app.repositories.models.common import Float
 from app.repositories.models.custom_bot_kb import BedrockKnowledgeBaseModel
+from app.repositories.models.custom_bot_guardrails import BedrockGuardrailsModel
 from app.routes.schemas.bot import type_sync_status
 from pydantic import BaseModel
 
@@ -30,7 +31,11 @@ class KnowledgeModel(BaseModel):
         for filename in self.filenames:
             _filenames += f"<filename>{filename}</filename>"
         _filenames += "</filenames>"
-        return f"{_source_urls}{_sitemap_urls}{_filenames}"
+        _s3_urls = "<s3_urls>"
+        for url in self.s3_urls:
+            _s3_urls += f"<url>{url}</url>"
+        _s3_urls += "</s3_urls>"
+        return f"{_source_urls}{_sitemap_urls}{_filenames}{_s3_urls}"
 
 
 class GenerationParamsModel(BaseModel):
@@ -84,6 +89,7 @@ class BotModel(BaseModel):
     display_retrieved_chunks: bool
     conversation_quick_starters: list[ConversationQuickStarterModel]
     bedrock_knowledge_base: BedrockKnowledgeBaseModel | None
+    bedrock_guardrails: BedrockGuardrailsModel | None
 
     def has_knowledge(self) -> bool:
         return (
