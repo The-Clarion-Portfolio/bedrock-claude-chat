@@ -46,6 +46,7 @@ const Menu: React.FC<Props> = (props) => {
         ref={buttonRef}
         className="relative bg-aws-squid-ink"
         text
+        style={{ backgroundColor: "#021533" }}
         icon={<PiList />}
         onClick={() => {
           setIsOpen(!isOpen);

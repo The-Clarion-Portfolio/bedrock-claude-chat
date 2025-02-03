@@ -6,7 +6,7 @@ import {
   PiNotePencil,
   PiUserFill,
   PiThumbsDown,
-  PiThumbsDownFill,
+  PiThumbsDownFill, PiSpeakerHigh,
 } from 'react-icons/pi';
 import { BaseProps } from '../@types/common';
 import {
@@ -91,6 +91,29 @@ const ChatMessage: React.FC<Props> = (props) => {
       setIsFeedbackOpen(false);
     },
     [chatContent, props]
+  );
+
+  const speakText = useCallback(
+    () => {
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+
+        return;
+      }
+
+      const text = chatContent?.content.filter((content) => content.contentType === "text")
+                                 .reduce((acc, content) => acc + content.body + '\n', "");
+
+      const msg = new SpeechSynthesisUtterance(text);
+      const femaleVoice = speechSynthesis.getVoices().find(voice => voice.name === "Samantha");
+
+      if (femaleVoice) {
+        msg.voice = femaleVoice;
+      }
+
+      window.speechSynthesis.speak(msg);
+    },
+    [chatContent]
   );
 
   return (
@@ -280,6 +303,11 @@ const ChatMessage: React.FC<Props> = (props) => {
           )}
           {chatContent?.role === 'assistant' && (
             <div className="flex">
+              <ButtonIcon
+                className="text-dark-gray"
+                onClick={speakText}>
+                <PiSpeakerHigh />
+              </ButtonIcon>
               <ButtonIcon
                 className="text-dark-gray"
                 onClick={() => setIsFeedbackOpen(true)}>

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, {CSSProperties, forwardRef} from 'react';
 import { BaseProps } from '../@types/common';
 import { PiSpinnerGap } from 'react-icons/pi';
 import { twMerge } from 'tailwind-merge';
@@ -12,12 +12,14 @@ type Props = BaseProps & {
   loading?: boolean;
   onClick: () => void;
   children: React.ReactNode;
+  style?: CSSProperties;
 };
 
 const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
   return (
     <button
       ref={ref}
+      style={props.style}
       className={twMerge(
         'flex items-center justify-center whitespace-nowrap rounded-lg border p-1 px-3',
         props.text && 'border-0',

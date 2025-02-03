@@ -13,7 +13,8 @@ const SwitchBedrockModel: React.FC<Props> = (props) => {
       className={twMerge(
         props.className,
         'flex justify-center gap-2 rounded-lg border border-light-gray bg-light-gray p-1 text-sm'
-      )}>
+      )}
+      style={{ backgroundColor: "#F1F3F3 !important", border: "none !important", padding: "0.8rem" }}>
       {availableModels.map((availableModel) => (
         <Button
           key={availableModel.modelId}
@@ -23,6 +24,7 @@ const SwitchBedrockModel: React.FC<Props> = (props) => {
               ? ''
               : 'border-light-gray bg-white text-dark-gray'
           )}
+          style={{ background: modelId === availableModel.modelId ? "white" : "linear-gradient(to right, #4BC8EF, #4361EE)", color: modelId === availableModel.modelId ? "black" : "white" }}
           onClick={() => setModelId(availableModel.modelId)}
           children={<span>{availableModel.label}</span>}
         />

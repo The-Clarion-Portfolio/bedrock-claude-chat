@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import ButtonSend from './ButtonSend';
+// import ButtonDictate from './ButtonDictate';
 import Textarea from './Textarea';
 import { AttachmentType } from '../hooks/useChat';
 import Button from './Button';
@@ -469,6 +470,12 @@ const InputChatContent = forwardRef<HTMLElement, Props>((props, focusInputRef) =
           />
         </div>
         <div className="absolute bottom-0 right-0 flex items-center">
+          {/*<ButtonDictate*/}
+          {/*  className="m-2 align-bottom"*/}
+          {/*  disabled={props.disabled}*/}
+          {/*  loading={props.isLoading}*/}
+          {/*  onClick={() => {}}*/}
+          {/*/>*/}
           <ButtonFileChoose
             disabled={props.isLoading}
             icon
@@ -556,6 +563,7 @@ const InputChatContent = forwardRef<HTMLElement, Props>((props, focusInputRef) =
             </Button>
           </div>
         )}
+        <script src={"/js/dictation.js"}></script>
       </div>
     </>
   );

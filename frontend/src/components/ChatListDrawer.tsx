@@ -262,12 +262,13 @@ const ChatListDrawer: React.FC<Props> = (props) => {
 
   return (
     <>
-      <div className="relative h-full overflow-y-auto bg-aws-squid-ink scrollbar-thin scrollbar-track-white scrollbar-thumb-aws-squid-ink/30 ">
+      <div className="relative h-full overflow-y-auto bg-aws-squid-ink scrollbar-thin scrollbar-track-white scrollbar-thumb-aws-squid-ink/30 left-pane">
         <nav
           className={`lg:visible lg:w-64 ${
             opened ? 'visible w-64' : 'invisible w-0'
           } text-sm  text-white transition-width`}>
-          <div className="absolute top-0 w-full overflow-y-auto overflow-x-hidden pb-12">
+          <div className="absolute top-0 w-full overflow-y-auto overflow-x-hidden pb-12" style={{ width: "calc(100% - 4rem)" }}>
+            <img src={"/images/ClarionPharmaAI-LogoReversed-2x.png"} alt={"Logo"} style={{ width: "60%", height: "auto", marginTop: "2rem", marginBottom: "2rem" }}></img>
             <DrawerItem
               isActive={false}
               icon={<PiNotePencil />}
@@ -361,7 +362,8 @@ const ChatListDrawer: React.FC<Props> = (props) => {
           <div
             className={`${
               opened ? 'w-64' : 'w-0'
-            } fixed bottom-0 flex h-12 items-center justify-start border-t bg-aws-squid-ink transition-width lg:w-64`}>
+            } fixed flex h-12 items-center justify-start border-t bg-aws-squid-ink transition-width lg:w-64`}
+            style={{ bottom: "1rem", backgroundColor: "#021533" }}>
             <Menu
               onSignOut={props.onSignOut}
               onSelectLanguage={props.onSelectLanguage}

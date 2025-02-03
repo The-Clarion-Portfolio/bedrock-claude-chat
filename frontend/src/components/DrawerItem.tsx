@@ -29,16 +29,6 @@ const DrawerItem: React.FC<Props> = (props) => {
         <div className="mr-2 pt-0.5">{props.icon}</div>
         <div className="relative flex-1 text-ellipsis break-all">
           {props.labelComponent}
-          {(props.isBlur ?? true) && (
-            <div
-              className={twMerge(
-                'absolute inset-y-0 right-0 w-8 bg-gradient-to-l',
-                props.isActive
-                  ? 'from-aws-sea-blue'
-                  : 'from-aws-squid-ink group-hover:from-aws-sea-blue-hover'
-              )}
-            />
-          )}
         </div>
 
         <div className="flex">{props.actionComponent}</div>

@@ -74,7 +74,7 @@ const AppContent: React.FC<Props> = (props) => {
   const [isOpenSelectLangage, setIsOpenSelectLangage] = useState(false);
 
   return (
-    <div className="relative flex h-dvh w-screen bg-aws-paper">
+    <div className="relative flex h-dvh w-screen bg-aws-paper" style={{ backgroundColor: "white" }}>
       <ChatListDrawer
         isAdmin={isAdmin}
         conversations={conversations}

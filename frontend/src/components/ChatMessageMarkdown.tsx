@@ -136,7 +136,7 @@ const ChatMessageMarkdown: React.FC<Props> = ({
 
   return (
     <ReactMarkdown
-      className={`${className ?? ''} prose max-w-full break-all`}
+      className={`${className ?? ''} prose max-w-full break-words`}
       children={text}
       remarkPlugins={remarkPlugins}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

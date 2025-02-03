@@ -50,6 +50,7 @@ const defaultGenerationConfig =
     ? DEFAULT_MISTRAL_GENERATION_CONFIG
     : DEFAULT_GENERATION_CONFIG;
 
+
 const BotEditPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -515,6 +516,73 @@ const BotEditPage: React.FC = () => {
     temperature,
     setErrorMessages,
     t,
+  ]);
+
+  const onClickDuplicate = useCallback(() => {
+    if (!isValid()) {
+      return;
+    }
+    setIsLoading(true);
+    registerBot({
+      agent: {
+        tools: tools.map(({ name }) => name),
+      },
+      id: ulid(),
+      title: `${title} Duplicate`,
+      description,
+      instruction,
+      embeddingParams: {
+        chunkSize: embeddingParams.chunkSize,
+        chunkOverlap: embeddingParams.chunkOverlap,
+        enablePartitionPdf: embeddingParams.enablePartitionPdf,
+      },
+      generationParams: {
+        maxTokens,
+        temperature,
+        topK,
+        topP,
+        stopSequences: stopSequences.split(','),
+      },
+      searchParams,
+      knowledge: {
+        sourceUrls: urls.filter((s) => s !== ''),
+        // Sitemap cannot be used yet.
+        sitemapUrls: [],
+        s3Urls: [],
+        filenames: files.map((f) => f.filename),
+      },
+      displayRetrievedChunks,
+      conversationQuickStarters: conversationQuickStarters.filter(
+        (qs) => qs.title !== '' && qs.example !== ''
+      ),
+    })
+      .then(() => {
+        navigate('/bot/explore');
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
+  }, [
+    isValid,
+    registerBot,
+    tools,
+    title,
+    description,
+    instruction,
+    embeddingParams.chunkSize,
+    embeddingParams.chunkOverlap,
+    embeddingParams.enablePartitionPdf,
+    maxTokens,
+    temperature,
+    topK,
+    topP,
+    stopSequences,
+    searchParams,
+    urls,
+    files,
+    displayRetrievedChunks,
+    conversationQuickStarters,
+    navigate,
   ]);
 
   const onClickCreate = useCallback(() => {
@@ -1060,12 +1128,20 @@ const BotEditPage: React.FC = () => {
                     {t('bot.button.create')}
                   </Button>
                 ) : (
-                  <Button
-                    onClick={onClickEdit}
-                    loading={isLoading}
-                    disabled={disabledRegister}>
-                    {t('bot.button.edit')}
-                  </Button>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <Button
+                      onClick={onClickDuplicate}
+                      loading={isLoading}
+                      disabled={disabledRegister}>
+                      Duplicate
+                    </Button>
+                    <Button
+                      onClick={onClickEdit}
+                      loading={isLoading}
+                      disabled={disabledRegister}>
+                      {t('bot.button.edit')}
+                    </Button>
+                  </div>
                 )}
               </div>
             </div>

@@ -366,7 +366,7 @@ const ChatPage: React.FC = () => {
       onDrop={endDnd}
       onDragEnd={endDnd}>
       <div className="flex-1 overflow-hidden">
-        <div className="sticky top-0 z-10 mb-1.5 flex h-14 w-full items-center justify-between border-b border-gray bg-aws-paper p-2">
+        <div className="sticky top-0 z-10 mb-1.5 flex h-14 w-full items-center justify-between border-b border-gray bg-aws-paper p-2" style={{ backgroundColor: "white", width: "calc(100% - 1rem)" }}>
           <div className="flex w-full justify-between">
             <div className="p-2">
               <div className="mr-10 font-bold">{pageTitle}</div>
@@ -433,18 +433,21 @@ const ChatPage: React.FC = () => {
             </div>
           )}
         </div>
-        <section className="relative size-full flex-1 overflow-auto pb-9">
+        <section className="relative size-full flex-1 overflow-auto pb-9" style={{ width: "calc(100% - 1rem)" }}>
           <div className="h-full">
             <div
               id="messages"
               role="presentation"
               className=" flex h-full flex-col overflow-auto pb-16">
               {messages?.length === 0 ? (
-                <div className="relative flex w-full justify-center">
+                <div className="relative flex w-full justify-center" style={{ flexWrap: "wrap" }}>
+                  <div style={{ minWidth: "100%" }}>
+                    <img src={"/images/ClarionPharmaAI-Logo-2x.png"} alt={""} style={{ marginTop: "1rem", marginBottom: "1rem", marginLeft: "auto", marginRight: "auto", width: "10rem" }}></img>
+                  </div>
                   {!loadingConversation && (
                     <SwitchBedrockModel className="mt-3 w-min" />
                   )}
-                  <div className="absolute mx-3 my-20 flex items-center justify-center text-4xl font-bold text-gray">
+                  <div className="absolute mx-3 my-20 flex items-center justify-center text-4xl font-bold text-gray" style={{ marginTop: "14rem" }}>
                     {!MISTRAL_ENABLED
                       ? t('app.name')
                       : t('app.nameWithoutClaude')}
@@ -457,7 +460,8 @@ const ChatPage: React.FC = () => {
                       key={idx}
                       className={`${
                         message.role === 'assistant' ? 'bg-aws-squid-ink/5' : ''
-                      }`}>
+                      }`}
+                    style={{ borderRadius: "8px" }}>
                       {messages.length === idx + 1 &&
                       [AgentState.THINKING, AgentState.LEAVING].some(
                         (v) => v == agentThinking.value
@@ -477,8 +481,6 @@ const ChatPage: React.FC = () => {
                           }}
                         />
                       )}
-
-                      <div className="w-full border-b border-aws-squid-ink/10"></div>
                     </div>
                   ))}
                 </>
